@@ -41,7 +41,7 @@ class _SigninScreenState extends State<SigninScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => ChatbotScreen(username: 'Ameena'),
+          builder: (context) => ChatbotScreen(username: 'Aayan'),
         ),
       );
     } else {
@@ -56,7 +56,7 @@ class _SigninScreenState extends State<SigninScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF3E4),
+      backgroundColor: const Color(0xFF121212), // Changed from light color to dark
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Center(
@@ -68,11 +68,11 @@ class _SigninScreenState extends State<SigninScreen> {
               const SizedBox(height: 20),
               const Center(
                 child: Text(
-                  "Welcome to ChatterAI",
+                  "Welcome to ShaktiAI",
                   style: TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF9B5DE5),
+                    color: Color(0xFF0D47A1), // Changed from purple to dark blue
                   ),
                 ),
               ),
@@ -86,12 +86,12 @@ class _SigninScreenState extends State<SigninScreen> {
                   icon: Image.asset('assets/google_icon.png', height: 24),
                   label: const Text(
                     "Sign in with Google",
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(color: Colors.white), // Changed to white
                   ),
                   style: OutlinedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 14),
-                    backgroundColor: Colors.white,
-                    side: const BorderSide(color: Colors.black12),
+                    backgroundColor: const Color(0xFF2C2C2C), // Changed to dark gray
+                    side: const BorderSide(color: Colors.black45),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(14),
                     ),
@@ -104,12 +104,12 @@ class _SigninScreenState extends State<SigninScreen> {
               // OR Divider
               Row(
                 children: const [
-                  Expanded(child: Divider(thickness: 1)),
+                  Expanded(child: Divider(thickness: 1, color: Colors.grey)), // Added color
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Text("or"),
+                    child: Text("or", style: TextStyle(color: Colors.grey)), // Changed text color
                   ),
-                  Expanded(child: Divider(thickness: 1)),
+                  Expanded(child: Divider(thickness: 1, color: Colors.grey)), // Added color
                 ],
               ),
 
@@ -118,13 +118,16 @@ class _SigninScreenState extends State<SigninScreen> {
               // Email TextField
               TextField(
                 controller: _emailController,
+                style: const TextStyle(color: Colors.white), // Added text color
                 decoration: InputDecoration(
                   labelText: 'Email',
-                  prefixIcon: const Icon(Icons.email),
+                  labelStyle: const TextStyle(color: Colors.grey), // Added label color
+                  prefixIcon: const Icon(Icons.email, color: Colors.grey), // Changed icon color
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: const Color(0xFF2C2C2C), // Changed to dark gray
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(14),
+                    borderSide: BorderSide.none, // Removed border
                   ),
                 ),
               ),
@@ -134,12 +137,15 @@ class _SigninScreenState extends State<SigninScreen> {
               TextField(
                 controller: _passwordController,
                 obscureText: _obscureText,
+                style: const TextStyle(color: Colors.white), // Added text color
                 decoration: InputDecoration(
                   labelText: 'Password',
-                  prefixIcon: const Icon(Icons.lock),
+                  labelStyle: const TextStyle(color: Colors.grey), // Added label color
+                  prefixIcon: const Icon(Icons.lock, color: Colors.grey), // Changed icon color
                   suffixIcon: IconButton(
                     icon: Icon(
                       _obscureText ? Icons.visibility_off : Icons.visibility,
+                      color: Colors.grey, // Changed icon color
                     ),
                     onPressed: () {
                       setState(() {
@@ -148,9 +154,10 @@ class _SigninScreenState extends State<SigninScreen> {
                     },
                   ),
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: const Color(0xFF2C2C2C), // Changed to dark gray
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(14),
+                    borderSide: BorderSide.none, // Removed border
                   ),
                 ),
               ),
@@ -170,7 +177,7 @@ class _SigninScreenState extends State<SigninScreen> {
                   child: const Text(
                     'Forgot Password?',
                     style: TextStyle(
-                      color: Color(0xFF9B5DE5),
+                      color: Color(0xFF0D47A1), // Changed from purple to dark blue
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -185,7 +192,7 @@ class _SigninScreenState extends State<SigninScreen> {
                 child: ElevatedButton(
                   onPressed: _login,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF9B5DE5),
+                    backgroundColor: const Color(0xFF0D47A1), // Changed from purple to dark blue
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 14),
                     shape: RoundedRectangleBorder(
@@ -203,7 +210,7 @@ class _SigninScreenState extends State<SigninScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Don't have an account? "),
+                  const Text("Don't have an account? ", style: TextStyle(color: Colors.grey)), // Added text color
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -214,7 +221,7 @@ class _SigninScreenState extends State<SigninScreen> {
                     child: const Text(
                       'Sign Up',
                       style: TextStyle(
-                        color: Color(0xFF9B5DE5),
+                        color: Color(0xFF0D47A1), // Changed from purple to dark blue
                         fontWeight: FontWeight.bold,
                       ),
                     ),

@@ -1,5 +1,8 @@
-import 'package:chatbot/backend_services/chatbot.dart';
-import 'package:chatbot/signin_screen.dart';
+// Change this import
+// from: import 'package:chatbot/backend_services/chatbot.dart';
+// to:
+import 'package:chatbot/backend_services/gemini_service.dart';
+import 'package:chatbot/screens/signin_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -17,8 +20,10 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
   final ScrollController _scrollController = ScrollController();
   final List<Map<String, dynamic>> _messages = [];
 
-  final BackendService _backendService =
-      BackendService(); // Backend service for interaction
+  // Change this line
+  // from: final BackendService _backendService = BackendService();
+  // to:
+  final GeminiService _backendService = GeminiService();
 
   @override
   void initState() {
@@ -26,7 +31,7 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
     _messages.add({
       'isUser': false,
       'text':
-          "👋 Hey ${widget.username}, welcome to 'ChatterAI'!\nHow can I assist you today?",
+          "👋 Hey ${widget.username}, Welcome to 'ShaktiAI'!\nHow can I assist you today?",  // Changed from ChatterAI
     });
   }
 
@@ -65,11 +70,11 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF3E4),
+      backgroundColor: const Color(0xFF121212), // Changed from light color to dark
       appBar: AppBar(
         automaticallyImplyLeading: false, // Removes back button
-        title: const Text("💬 ChatterAI"),
-        backgroundColor: const Color(0xFF9B5DE5),
+        title: const Text("💬 ShaktiAI"),  // Changed from ChatterAI
+        backgroundColor: const Color(0xFF1E1E1E), // Changed from purple to dark gray
         foregroundColor: Colors.white,
         elevation: 4,
         actions: [
@@ -119,21 +124,27 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
                 Expanded(
                   child: TextFormField(
                     controller: _controller,
-                    style: const TextStyle(color: Colors.black),
+                    style: const TextStyle(color: Colors.white), // Changed text color to white
                     decoration: InputDecoration(
                       hintText: "Type your message...",
-                      hintStyle: const TextStyle(color: Colors.black54),
+                      hintStyle: const TextStyle(color: Colors.grey), // Changed hint color to grey
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor: const Color(0xFF2C2C2C), // Changed input background to dark gray
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(14),
+                        borderSide: BorderSide.none, // Removed border
                       ),
                     ),
+                    // Add these lines to handle Enter key press
+                    onFieldSubmitted: (value) {
+                      sendMessage();
+                    },
+                    textInputAction: TextInputAction.send,
                   ),
                 ),
                 const SizedBox(width: 8),
                 CircleAvatar(
-                  backgroundColor: const Color(0xFF9B5DE5),
+                  backgroundColor: const Color(0xFF0D47A1), // Changed from purple to dark blue
                   child: IconButton(
                     onPressed: sendMessage,
                     icon: const Icon(Icons.send, color: Colors.white),
@@ -162,7 +173,7 @@ class ChatBubble extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
-          color: isUser ? const Color(0xFFFF7E5F) : const Color(0xFFD7A9F9),
+          color: isUser ? const Color(0xFF0D47A1) : const Color(0xFF2C2C2C), // Changed colors to blue and dark gray
           borderRadius: BorderRadius.only(
             topLeft: const Radius.circular(16),
             topRight: const Radius.circular(16),
@@ -171,7 +182,7 @@ class ChatBubble extends StatelessWidget {
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.08),
+              color: Colors.black.withOpacity(0.2),
               blurRadius: 6,
               offset: const Offset(2, 2),
             ),

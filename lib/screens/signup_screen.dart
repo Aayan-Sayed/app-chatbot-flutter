@@ -118,7 +118,7 @@ class _SignUpScreenState extends State<SignupScreen> {
               children: [
                 const SizedBox(height: 20),
                 Text(
-                  "Join ChatterAI and start the conversation!",
+                  "Join ShaktiAI and start the conversation!",  // Changed from ChatterAI
                   style: GoogleFonts.poppins(
                     fontSize: 14,
                     color: Colors.grey.shade700,
